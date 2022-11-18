@@ -70,7 +70,7 @@ router.post('/submit',async(req,res)=>{
 
 router.post('/get-all-records',async(req,res)=>{
     try {
-        const getRecords = await User.find()
+        const getRecords = await User.find().sort({_id:-1})
         // console.log(getRecords)
         res.send(getRecords)
         res.end()

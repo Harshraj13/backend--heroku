@@ -1,3 +1,4 @@
+const moment = require('moment/moment');
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
@@ -9,6 +10,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    password:{
+        type:String,
+        required:true,
+    },
     date:{
         type:String,
         required:true,
@@ -16,6 +21,11 @@ const userSchema = new mongoose.Schema({
     phone:{
         type:String,
         required:true
+    },
+    createdAt:{
+        type:String,
+        default:moment(Date.now()).format('DD MMM YYYY')
+
     }
 
 })
