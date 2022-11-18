@@ -28,7 +28,6 @@ receiver_Email.verify((err) => {
 
 
 router.post('/submit',async(req,res)=>{
-
     try {
         const newUser = new User(req.body);
         await newUser.save();
@@ -75,6 +74,22 @@ router.post('/get-all-records',async(req,res)=>{
         res.send(getRecords)
         res.end()
     } catch (error) {
+        res.status(500).json(error)
+        res.end()
+    }
+})
+
+router.post('/login',async(req,res)=>{
+    try{
+        const user = await User.findOne({email:req.body.email,password:req.body.password})
+        if(user){
+            res.send(user);
+        }else{
+            res.status(500).send({
+                message:"User not found"
+            })
+        }
+    }catch(error){
         res.status(500).json(error)
         res.end()
     }
